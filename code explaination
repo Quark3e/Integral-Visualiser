@@ -1,0 +1,32 @@
+Explaination:
+(the purpose/meaning/defintion of each variable is described after the "#" in the code (because in gnuplot hashtags are used to write stuff, not to be read by the programming language))
+This code is just an in depth visualisation "tool" where you yourself can tinker with the values. 
+This whole idea came from 3Blue1Browns' video: "Integration and the fundamental theorem of calculus | Chapter 8, Essence of calculus"
+That videos does this MUCH better. What I've done is just a fun concept in gnuplot code.
+I highly recommend you watch his video(s) if you actually want to learn integrals or understand it in a much easier and effective way.
+
+
+So what the code does is it creates columns/rectangles between the x axis and it's corresponding point on the function you want to "integrate"
+The columns will overlap (and underlap) the function by a bit but the point is to demonstrate that for higher nres values (explained later on)
+the closer the sum area of all rectangles will be to the actual integral value.
+
+This code generates columns with the "set object" command in gnuplot and generates each one with a "do for" loop 
+(simpler version of a "for" loop where the iterations are already set default to 1) 
+where in each iteration it creates a rectangle by from one point at the function line and the opposite point at the x axis.
+command for generating each rectangle: 
+set object <index> rectangle from <point coords at function> to <opposite point coords of rectangle on the x axis> <fillcolor> rgb "<color>"
+note: the "set object" command sets several objects/columns, each represented as an seperate object/entity defined by its <index>
+
+
+Another cool thing with the gnuplot software is that it has a gif terminal, where it can generate a gif of your plot with a variable chaging between each gif frame.
+In the code it shows how to create a gif where each frame is an nres value between (in this case) 4 and 60. So it will have 56 frames, each frame containing the amount
+of columns it would have at that nres value.
+Each frame is created with "plot" under a second/outer "do for" loop. Where each iterations in this loop generates a full image/gif-frame with all columns all set.
+The nres value increases with each "do for" iteration so the number of columns/rectangles
+are increases.
+So after each column iteration sequence it plots the function again, creating each gif frame.
+the "set terminal window; replot" at the end is just to force the gif generator to hurry as sometimes it glitches and slows down.
+
+I describe the corners of each rectangle/column with a "counter" variable and xwidths. The "counter" variable starts at x1 (the start of the limit)
++ xwidth (the thickness of each column).
+So for the top left corner it subtracts xwdith as "counter" will naturally be located on the right side corner) and sets the x coord as (counter-xwidth) and y coord as f(counter-xwidth)

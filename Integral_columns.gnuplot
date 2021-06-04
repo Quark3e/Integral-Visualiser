@@ -30,7 +30,7 @@ plot x**3-2*x**2+2  #the "plot" command plots the function on gnuplots plotting 
 
 # animate column resolution (nres) value
 cd 'C:\Users\aa82637\Videos\Gnuplot animation outputs'
-set terminal gif animate delay 16  #everything plotted will now be turned into a gif frame
+set terminal gif animate delay 25  #everything plotted will now be turned into a gif frame
 set output "Column demonstration animation1.gif"  #name of the gif file
 do for [nres=4:60] {
     xwidth = xbase/nres
@@ -44,3 +44,4 @@ do for [nres=4:60] {
     plot x**3-2*x**2+2
     }
 set terminal window; replot
+

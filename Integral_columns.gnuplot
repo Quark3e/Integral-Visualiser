@@ -22,14 +22,16 @@ do for [n=1:nres] {
     counter = x1 + xwidth*n
     set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple" 
 }
+LABEL = "Number of Columns ".nres
+set label 10 at -1,2.5 LABEL front center
 
 # plotting
 plot x**3-2*x**2+2  #the "plot" command plots the function on gnuplots plotting terminal/window. This command also allows us to see all the set objects
 
 # animate column resolution (nres) value
 cd 'C:\Users\aa82637\Videos\Gnuplot animation outputs'
-set terminal gif animate delay 16
-set output "Column demonstration animation1.gif"
+set terminal gif animate delay 16  #everything plotted will now be turned into a gif frame
+set output "Column demonstration animation1.gif"  #name of the gif file
 do for [nres=4:60] {
     xwidth = xbase/nres
     do for [n=1:nres] {
@@ -37,7 +39,8 @@ do for [nres=4:60] {
         set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple"
         n=n+1
         }
-    
+    LABEL = "Number of Columns ".nres
+    set label 10 at -1,2.5 LABEL front center
     plot x**3-2*x**2+2
     }
 set terminal window; replot

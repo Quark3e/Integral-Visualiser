@@ -9,11 +9,12 @@ x2 = 1.5
 
 
 # definitions
+n = 1
 nres = 4  #nres is the resolution, i.e the number of columns in the integral
 nresmax = 80  #the end nres value for animating a gif
 xbase = x2 - x1  #xbase is the base of all the columns combined on the x axis
 xwidth = xbase/nres  #width of each column
-counter = x1 + xwidth*i  #used for calculating each column/rectangle as it set the x value on the x axis.
+counter = x1 + xwidth*n  #used for calculating each column/rectangle as it set the x value on the x axis.
 
 RealIntegralValue = F(x2) - F(x1)
 round(x) = x - floor(x) < 0.5? floor(x) : ceil(x)  #rounding the numbers. floor rounds down the number if x<0.5. ceil rounds up x if x>0.5

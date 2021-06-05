@@ -28,6 +28,8 @@ set grid
 
 
 # plot preparation
+TotalArea = 0.0000
+
 n = 1
 do for [n=1:nres] {
     counter = x1 + xwidth*n
@@ -52,11 +54,12 @@ cd 'C:\Users\aa82637\Videos'
 set terminal gif animate delay 25  #everything plotted will now be turned into a gif frame
 set output "Column demonstration animation.gif"  #name of the gif file
 do for [nres=4:nresmax] {
+    TotalArea = 0.0000
     xwidth = xbase/nres
     do for [n=1:nres] {
         counter = x1 + xwidth*n
         set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple"
-        
+
         area(n) = xwidth * f(counter-xwidth)
         TotalArea = TotalArea + area(n)
 

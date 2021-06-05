@@ -10,7 +10,7 @@ x2 = 1.5
 
 # definitions
 n = 1
-nres = 4  #nres is the resolution, i.e the number of columns in the integral
+nres = 1  #nres is the resolution, i.e the number of columns/rectangles in the integral
 nresmax = 80  #the end nres value for animating a gif
 xbase = x2 - x1  #xbase is the base of all the columns combined on the x axis
 xwidth = xbase/nres  #width of each column
@@ -52,12 +52,12 @@ plot x**3-2*x**2+2  #the "plot" command plots the function on gnuplots plotting 
 
 # animate column resolution (nres) value
 cd 'C:\Users\aa82637\Videos'
-set terminal gif animate delay 25  #everything plotted will now be turned into a gif frame
+set terminal gif animate delay 25  #higher delay value means longer delay between each plot iteration
 set output "Column demonstration animation.gif"  #name of the gif file
-do for [nres=4:nresmax] {
+do for [nresval = nres:nresmax] {
     TotalArea = 0.0000
-    xwidth = xbase/nres
-    do for [n=1:nres] {
+    xwidth = xbase/nresval
+    do for [n=1:nresval] {
         counter = x1 + xwidth*n
         set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple"
 
@@ -68,10 +68,10 @@ do for [nres=4:nresmax] {
         }
     TotalAreaText = round2(TotalArea, 4)
     RealIntegral = round2(RealIntegralValue, 4)
-    set label 1 sprintf("Number of Columns: %.3f\n \nActual Integral Value %.3f\n \nArea of Columns: %.3f", nres, RealIntegral, TotalAreaText)
+    set label 1 sprintf("Number of Columns: %.3f\n \nActual Integral Value %.3f\n \nArea of Columns: %.3f", nresval, RealIntegral, TotalAreaText)
     set label 1 at -1.1,2.75 front center
 
     plot x**3-2*x**2+2
     }
-set terminal window; replot
+set terminal qt; replot
 

@@ -32,6 +32,9 @@ n = 1
 do for [n=1:nres] {
     counter = x1 + xwidth*n
     set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple" 
+
+    area(n) = xwidth * f(counter-xwidth)
+    TotalArea = TotalArea + area(n)
 }
 TotalAreaText = round2(TotalArea, 4) #rounding up the calculated area to the 4th decimal
 RealIntegral = round2(RealIntegralValue, 4) #rounding up the actual integral value to the 4th decimal
@@ -53,6 +56,10 @@ do for [nres=4:nresmax] {
     do for [n=1:nres] {
         counter = x1 + xwidth*n
         set obj n rect from (counter-xwidth),f(counter-xwidth) to counter,0 fc rgb "purple"
+        
+        area(n) = xwidth * f(counter-xwidth)
+        TotalArea = TotalArea + area(n)
+
         n=n+1
         }
     TotalAreaText = round2(TotalArea, 4)
